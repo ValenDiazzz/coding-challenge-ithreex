@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "PGDATABASE=employeesdb_test NODE_ENV=test node --test"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -17,6 +17,7 @@
     "pino-http": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.4"
   }
 }
