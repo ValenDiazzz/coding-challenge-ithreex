@@ -1,4 +1,3 @@
-// src/db.js
 import dotenv from "dotenv";
 import pkg from "pg";
 const { Pool } = pkg;

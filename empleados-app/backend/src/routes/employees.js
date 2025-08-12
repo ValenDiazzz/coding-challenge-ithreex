@@ -1,10 +1,9 @@
-// src/routes/employees.js
 import { Router } from "express";
 import { pool } from "../db.js";
 
 export const employeesRouter = Router();
 
-// GET /employees  -> lista
+// GET /employees  -> list
 employeesRouter.get("/", async (_req, res, next) => {
   try {
     const { rows } = await pool.query(
@@ -18,7 +17,7 @@ employeesRouter.get("/", async (_req, res, next) => {
   }
 });
 
-// GET /employees/:id  -> detalle
+// GET /employees/:id  -> details
 employeesRouter.get("/:id", async (req, res, next) => {
   try {
     const id = Number(req.params.id);

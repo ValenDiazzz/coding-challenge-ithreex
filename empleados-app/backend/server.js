@@ -1,4 +1,3 @@
-// server.js
 import dotenv from "dotenv";
 import { buildApp } from "./src/app.js";
 import { pool } from "./src/db.js";
@@ -13,7 +12,6 @@ const server = app.listen(port, host, () => {
   console.log(`API running on http://${host}:${port}`);
 });
 
-// Apagado limpio
 async function shutdown(signal) {
   try {
     console.log(`\n${signal} received. Shutting down...`);

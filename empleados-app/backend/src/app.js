@@ -1,4 +1,3 @@
-// src/app.js
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -10,14 +9,14 @@ export function buildApp() {
   const app = express();
 
   // Middlewares base
-  app.use(helmet());            // headers de seguridad
-  app.use(cors());              // en prod, restringí origin
-  app.use(express.json());      // body-parser JSON
-  app.use(pinoHttp());          // logging HTTP
+  app.use(helmet());
+  app.use(cors());
+  app.use(express.json());
+  app.use(pinoHttp());
 
   // Healthchecks
-  app.get("/", (_req, res) => res.json({ ok: true })); // liveness
-  app.get("/health", async (_req, res) => {            // readiness (DB)
+  app.get("/", (_req, res) => res.json({ ok: true }));
+  app.get("/health", async (_req, res) => {
     try {
       await pool.query("SELECT 1");
       res.json({ ok: true, db: true });
@@ -26,13 +25,11 @@ export function buildApp() {
     }
   });
 
-  // Rutas
+  // Routes
   app.use("/employees", employeesRouter);
 
   // Error handler global
-  // eslint-disable-next-line no-unused-vars
   app.use((err, _req, res, _next) => {
-    // log detallado ya lo hace pinoHttp; opcional console.error:
     console.error(err);
     res.status(500).json({ error: "Internal server error" });
   });
